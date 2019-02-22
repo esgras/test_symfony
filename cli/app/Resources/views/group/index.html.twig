@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <a href="{{ path('group_create') }}" class="btn btn-info">Create new
+        group</a>
+    {% if not groups|length %}
+        <p>There is no groups</p>
+    {% else %}
+        <table class="table">
+            {% for group in groups %}
+                <tr>
+                    <td>{{ group.id }}</td>
+                    <td>
+                        <a href="{{ path('group_update', {id: group.id}) }}">{{ group.name }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('group_users', {id: group.id}) }}">users</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('group_delete', {id: group.id}) }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <a href="{{ path('user_create') }}" class="btn btn-info">Create new user</a>
+    {% if not users|length %}
+        <p>There is no users</p>
+    {% else %}
+        <table class="table">
+            {% for user in users %}
+                <tr>
+                <td>{{ user.id }}</td>
+                <td>
+                    <a href="{{ path('user_update', {id: user.id}) }}">{{ user.name }}</a>
+                </td>
+                <td>
+                    <a href="{{ path('user_update', {id: user.id}) }}">{{ user.email }}</a>
+                </td>
+                <td>
+                    <a href="{{ path('user_delete', {id: user.id}) }}">Delete</a>
+                </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
